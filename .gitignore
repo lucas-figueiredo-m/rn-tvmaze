@@ -21,6 +21,15 @@ DerivedData
 *.ipa
 *.xcuserstate
 
+# envs
+.env.development
+.env.staging
+.env.production
+.env
+
+# react-native-config codegen
+ios/tmp.xcconfig
+
 # Android/IntelliJ
 #
 build/
