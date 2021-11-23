@@ -4,6 +4,14 @@ export enum MainRoutes {
 }
 
 export enum TabRoutes {
+  HOME_STACK = 'HOME_STACK',
+  SEARCH_STACK = 'SEARCH_STACK'
+}
+
+export enum HomeStackRoutes {
   SHOWS_LIST = 'SHOWS_LIST',
-  SEARCH_SCREEN = 'SEARCH_SCREEN'
+}
+
+export enum SearchStackRoutes {
+  SEARCH_SCREEN = 'SEARCH_SCREEN',
 }
