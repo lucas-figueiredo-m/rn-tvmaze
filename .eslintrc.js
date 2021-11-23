@@ -50,7 +50,7 @@ module.exports = {
     'react-native/no-single-element-style-arrays': 1,
     'react-native/no-unused-styles': 1,
     'react/self-closing-comp': ['error'],
-    "react/jsx-closing-bracket-location": 2, // -> [<enabled>, "tag-aligned"],
+    "react/jsx-closing-bracket-location": 2,
     "react/jsx-indent-props": [2, 2],
     // '@typescript-eslint/no-loop-func': 'off',
     // '@typescript-eslint/no-redeclare': 'off',

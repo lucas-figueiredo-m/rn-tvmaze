@@ -1,0 +1,9 @@
+export enum MainRoutes {
+  SPLASH_SCREEN = 'SPLASH_SCREEN',
+  TAB_NAVIGATOR = 'TAB_NAVIGATOR'
+}
+
+export enum TabRoutes {
+  SHOWS_LIST = 'SHOWS_LIST',
+  SEARCH_SCREEN = 'SEARCH_SCREEN'
+}
