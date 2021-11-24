@@ -5,6 +5,7 @@ export enum Colors {
   Cultured = '#F2F4F3',
   BlackOlive = '#32322C',
   DarkGrey =  '#242526',
+  MediumGrey =  '#999999',
 
   White =  '#FFFFFF',
   Black = '#000000',

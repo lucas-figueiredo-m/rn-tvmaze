@@ -16,10 +16,17 @@ export const styles = StyleSheet.create({
     justifyContent: 'center'
   },
 
+  spinnerContainer: {
+    width,
+    height: height * 0.05,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+
   seasonLabel: {
     fontFamily: FontFamilies.SemiBold,
     fontSize: 16,
-    color: Colors.White
+    // color: Colors.White
   },
 
   bar: {

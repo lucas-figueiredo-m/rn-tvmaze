@@ -1,3 +1,4 @@
+import { Episode } from "./episodeTypes";
 
 export enum ShowStatus {
     ENDED = 'Ended',
@@ -93,4 +94,9 @@ export interface ShowSeason {
             href: string
         }
     }
+}
+
+export interface ShowEpisodes {
+    season: number,
+    data: Episode[]
 }

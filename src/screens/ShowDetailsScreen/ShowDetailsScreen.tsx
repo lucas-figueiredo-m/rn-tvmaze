@@ -1,33 +1,37 @@
 import { useRoute } from '@react-navigation/core'
-import { SeasonScroll, ShowHeader, ShowInfo } from 'components'
-import React, { useEffect } from 'react'
-import { View, Text, SectionList } from 'react-native'
+import { EpisodeCard, SeasonScroll, ShowHeader, ShowInfo } from 'components'
+import React, { useEffect, useState } from 'react'
+import { View, SectionList, ActivityIndicator, useWindowDimensions } from 'react-native'
 import { ShowDetailsRouteProps } from 'routes/config/types'
-import { getShowSeasons } from 'store/actions/showsActions'
+import { getShowData } from 'store/actions/showsActions'
+import { Colors } from 'theme'
+import { ShowEpisodes } from 'typings/showTypes'
 import { styles } from './styles'
 
-const DATA = [
-  {
-    title: "Main dishes",
-    data: ["Pizza", "Burger", "Risotto","Pizza", "Burger", "Risotto","Pizza", "Burger", "Risotto","Pizza", "Burger", "Risotto","Pizza", "Burger", "Risotto","Pizza", "Burger", "Risotto","Pizza", "Burger", "Risotto","Pizza", "Burger", "Risotto","Pizza", "Burger", "Risotto","Pizza", "Burger", "Risotto","Pizza", "Burger", "Risotto","Pizza", "Burger", "Risotto","Pizza", "Burger", "Risotto","Pizza", "Burger", "Risotto","Pizza", "Burger", "Risotto","Pizza", "Burger", "Risotto","Pizza", "Burger", "Risotto","Pizza", "Burger", "Risotto","Pizza", "Burger", "Risotto","Pizza", "Burger", "Risotto","Pizza", "Burger", "Risotto","Pizza", "Burger", "Risotto","Pizza", "Burger", "Risotto",]
-  }
-];
-
-const Item = ({ title }) => (
-  <View>
-    <Text>{title}</Text>
-  </View>
-);
+const ListEmptyComponent: React.FC = () => {
+  const { height } = useWindowDimensions()
+  return (
+    <View style={{ paddingVertical: height * 0.05 }}>
+      <ActivityIndicator size='large' color={Colors.SapphireBlue} />
+    </View>
+  )
+}
 
 const ShowDetailsScreen: React.FC = () => {
   const { params: { show } } = useRoute<ShowDetailsRouteProps>()
 
+  // const [loading, setLoading] = useState<boolean>(true)
+  const [seasons, setSeasons] = useState<ShowEpisodes[]>([])
+  const [selected, setSelected] = useState<number>(1)
+  
+  const [data, setData] = useState<ShowEpisodes[]>([])
+
 
   const fetchSeasons = async () => {
     try {
-      const res = await getShowSeasons(show.id)
-      console.log('res: ', res)
-      
+      const res = await getShowData(show.id)
+      setSeasons(res)
+      setData( [res[0]] )
     } catch (error) {
       console.warn(error)
     }
@@ -37,6 +41,12 @@ const ShowDetailsScreen: React.FC = () => {
     fetchSeasons()
   }, [])
 
+  const onSeasonPress = (value: number) => {
+    setSelected(value)
+    const finder = seasons.find( season => season.season === value)
+    setData( finder ? [ finder ] : [])
+  }
+
   return (
     <View style={styles.root}>
       <ShowHeader label='Show Detail' />
@@ -44,16 +54,23 @@ const ShowDetailsScreen: React.FC = () => {
         <SectionList
           bounces={false}
           ListHeaderComponent={<ShowInfo show={show} />}
+          ListEmptyComponent={<ListEmptyComponent />}
           keyExtractor={(_item, index) => index.toString()}
-          renderItem={({ item }) => <Item title={item} />}
-          renderSectionHeader={() => (
-            <SeasonScroll seasons={6} />
+          renderItem={({ item }) => (
+            <EpisodeCard
+              episode={item}
+              onPress={() => null}
+            />
           )}
-          sections={DATA}
+          renderSectionHeader={() => (
+            <SeasonScroll
+              seasons={seasons}
+              selected={selected}
+              onSeasonPress={onSeasonPress}
+            />
+          )}
+          sections={data}
         />
-          
-
-
       </View>
     </View>
   )
