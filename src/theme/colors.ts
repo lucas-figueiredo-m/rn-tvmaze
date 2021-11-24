@@ -9,5 +9,6 @@ export enum Colors {
   White =  '#FFFFFF',
   Black = '#000000',
   Transparent = 'transparent',
-  Red = '#AB0000'
+  Red = '#AB0000',
+  Yellow = '#FCE803'
 }

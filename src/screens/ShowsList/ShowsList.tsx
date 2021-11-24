@@ -1,7 +1,10 @@
+import { useNavigation } from '@react-navigation/core'
 import { Container, Header, Separator } from 'components/common'
 import { ShowCard } from 'components/ShowCard/ShowCard'
 import React, { useEffect, useState } from 'react'
 import { View, FlatList } from 'react-native'
+import { HomeStackRoutes } from 'routes/config'
+import { ShowListProps } from 'routes/config/types'
 import { getShows } from 'store/actions/showsActions'
 import { ShowItem } from 'typings/showTypes'
 import { styles } from './styles'
@@ -12,10 +15,12 @@ const ShowsList: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string>('')
 
+  const { navigate } = useNavigation<ShowListProps>()
+
   const fetchShows = async (pageNumber = page) => {
     try {
       const res = await getShows(pageNumber)
-      console.log('res: ', res)
+
       setShows(res)
       setLoading(false)
       setError('')
@@ -43,7 +48,7 @@ const ShowsList: React.FC = () => {
           renderItem={({ item }) => (
             <ShowCard
               show={item}
-              onPress={()=>null}
+              onPress={() => navigate(HomeStackRoutes.SHOW_DETAIL_SCREEN, { show: item }) }
               onFavoritePress={()=>null}
             />
           )}

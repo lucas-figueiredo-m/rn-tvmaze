@@ -52,7 +52,7 @@ export const ShowCard: React.FC<Props> = ({ show, onPress, onFavoritePress }) =>
           style={styles.favoriteContainer}
           hitSlop={hitSlop}
         >
-          <SVG xml={Heart} color={Colors.Red} fill={Colors.Red} />
+          <SVG xml={Heart} color={Colors.Red} fill={Colors.Transparent} />
         </TouchableOpacity>
       </View>
 
