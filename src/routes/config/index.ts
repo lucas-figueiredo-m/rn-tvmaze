@@ -10,7 +10,8 @@ export enum TabRoutes {
 
 export enum HomeStackRoutes {
   SHOWS_LIST = 'SHOWS_LIST',
-  SHOW_DETAIL_SCREEN = 'SHOW_DETAIL_SCREEN'
+  SHOW_DETAIL_SCREEN = 'SHOW_DETAIL_SCREEN',
+  EPISODE_DETAILS_SCREEN = 'EPISODE_DETAILS_SCREEN'
 }
 
 export enum SearchStackRoutes {

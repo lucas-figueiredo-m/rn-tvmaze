@@ -1,8 +1,9 @@
-import { useRoute } from '@react-navigation/core'
+import { useNavigation, useRoute } from '@react-navigation/core'
 import { EpisodeCard, SeasonScroll, ShowHeader, ShowInfo } from 'components'
 import React, { useEffect, useState } from 'react'
 import { View, SectionList, ActivityIndicator, useWindowDimensions } from 'react-native'
-import { ShowDetailsRouteProps } from 'routes/config/types'
+import { HomeStackRoutes } from 'routes/config'
+import { ShowDetailsRouteProps, ShowDetailsScreenProps } from 'routes/config/types'
 import { getShowData } from 'store/actions/showsActions'
 import { Colors } from 'theme'
 import { ShowEpisodes } from 'typings/showTypes'
@@ -19,6 +20,7 @@ const ListEmptyComponent: React.FC = () => {
 
 const ShowDetailsScreen: React.FC = () => {
   const { params: { show } } = useRoute<ShowDetailsRouteProps>()
+  const { navigate } = useNavigation<ShowDetailsScreenProps>()
 
   // const [loading, setLoading] = useState<boolean>(true)
   const [seasons, setSeasons] = useState<ShowEpisodes[]>([])
@@ -59,7 +61,7 @@ const ShowDetailsScreen: React.FC = () => {
           renderItem={({ item }) => (
             <EpisodeCard
               episode={item}
-              onPress={() => null}
+              onPress={() => navigate(HomeStackRoutes.EPISODE_DETAILS_SCREEN, { episode: item, show: show.name })}
             />
           )}
           renderSectionHeader={() => (

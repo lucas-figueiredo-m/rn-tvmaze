@@ -31,10 +31,17 @@ export const styles = StyleSheet.create({
     color: Colors.DarkGrey
   },
 
+  runtime: {
+    fontFamily: FontFamilies.Medium,
+    fontSize: 14,
+    color: Colors.DarkGrey
+  },
+
   infoContainer: {
     flex: 70,
     paddingVertical: height * 0.015,
-    paddingLeft: width * 0.05
+    paddingLeft: width * 0.05,
+    justifyContent: 'space-between'
   },
 
   tags: {

@@ -7,6 +7,7 @@ import { SVG } from 'components/common'
 import ChevronRight from 'assets/icons/chevron-right.svg'
 import { Colors } from 'theme'
 import { Episode } from 'typings/episodeTypes'
+import { formatNumber } from 'utils/textFormatter'
 
 interface Props {
   episode: Episode,
@@ -31,10 +32,11 @@ export const EpisodeCard: React.FC<Props> = ({ episode, onPress }) => {
 
       <View style={styles.infoContainer}>
         <Text style={styles.title}>
-          {`S${episode.season}E${episode.number}`}
+          {`S${formatNumber(episode.season)}E${formatNumber(episode.number)}`}
           {' - '}
           {episode.name}
         </Text>
+        <Text style={styles.runtime}>{episode.runtime} min</Text>
       </View>
 
       <View style={styles.chevron}>
