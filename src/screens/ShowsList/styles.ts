@@ -5,5 +5,9 @@ export const styles = StyleSheet.create({
   root: {
     flex: 1,
     backgroundColor: Colors.Cultured
+  },
+
+  spinner: {
+    paddingVertical: 30
   }
 })

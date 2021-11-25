@@ -2,10 +2,11 @@ import { useNavigation } from '@react-navigation/core'
 import { Container, Header, Separator } from 'components/common'
 import { ShowCard } from 'components/ShowCard/ShowCard'
 import React, { useEffect, useState } from 'react'
-import { View, FlatList } from 'react-native'
+import { View, FlatList, ActivityIndicator } from 'react-native'
 import { HomeStackRoutes } from 'routes/config'
 import { ShowListProps } from 'routes/config/types'
 import { getShows } from 'store/actions/showsActions'
+import { Colors } from 'theme'
 import { ShowItem } from 'typings/showTypes'
 import { styles } from './styles'
 
@@ -23,6 +24,7 @@ const ShowsList: React.FC = () => {
 
       setShows(res)
       setLoading(false)
+      setPage( prev => prev + 1)
       setError('')
 
     } catch (err) {
@@ -45,6 +47,13 @@ const ShowsList: React.FC = () => {
           data={shows}
           keyExtractor={(_item, index) => index.toString()}
           ItemSeparatorComponent={() => <Separator />}
+          onEndReachedThreshold={0.9}
+          onEndReached={() => fetchShows()}
+          ListFooterComponent={() => (
+            <View style={styles.spinner}>
+              <ActivityIndicator size='large' color={Colors.RoyalBlueDark} /> 
+            </View>
+          )}
           renderItem={({ item }) => (
             <ShowCard
               show={item}
