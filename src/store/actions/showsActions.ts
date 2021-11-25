@@ -1,6 +1,6 @@
 import tvmaze from 'services/api';
 import { Episode } from 'typings/episodeTypes';
-import { ShowEpisodes, ShowItem, ShowSeason } from 'typings/showTypes';
+import { ShowEpisodes, ShowItem, ShowSearch, ShowSeason } from 'typings/showTypes';
 
 export const getShows = async (page: number) => {
   try {
@@ -18,6 +18,17 @@ export const getShows = async (page: number) => {
   }
 }
 
+export const searchShows = async (text: string) => {
+  try {
+    const res = await tvmaze.get<ShowSearch[]>('/search/shows', { params: { q: text } })
+
+    return res.data
+
+  } catch (error) {
+    console.log('Error: ', { error })
+    throw error
+  }
+}
 
 
 
@@ -37,7 +48,6 @@ export const getShowData = async (showId: number) => {
       seasonsEpisodes.push(newEpisode) // = [...seasonsEpisodes, newEpisode]
     }
     
-
     return seasonsEpisodes
 
   } catch (error) {

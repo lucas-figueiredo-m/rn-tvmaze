@@ -7,6 +7,7 @@ import { EpisodeDetailsRouteProps } from 'routes/config/types'
 import { Colors } from 'theme'
 import { formatNumber, removeHtml } from 'utils/textFormatter'
 import Star from 'assets/icons/star.svg'
+import Logo from 'assets/img/logo.png'
 import { styles } from './styles'
 
 const EpisodeDetailsScreen: React.FC = () => {
@@ -20,8 +21,8 @@ const EpisodeDetailsScreen: React.FC = () => {
         >
           <View style={styles.infoContainer}>
             <Image
-              source={{ uri: episode.image.original }}
-              style={styles.image}
+              source={ episode?.image?.original ? { uri: episode?.image?.original } : Logo}
+              style={[styles.image, { resizeMode: episode?.image?.original ? 'cover' : 'contain'}]}
             />
 
             <View style={styles.textsContainer}>

@@ -100,3 +100,8 @@ export interface ShowEpisodes {
     season: number,
     data: Episode[]
 }
+
+export interface ShowSearch {
+    score: number,
+    show: ShowItem
+}

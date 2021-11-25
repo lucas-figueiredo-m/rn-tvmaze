@@ -21,7 +21,14 @@ export const ImageLoader: React.FC<Props> = ({ uri, width, aspectRatio }) => {
     >
       <Image
         source={uri ? { uri } : Logo}
-        style={[{ width, aspectRatio, borderRadius: width * 0.1 }, styles.image]}
+        style={
+          {
+            width,
+            aspectRatio,
+            borderRadius: width * 0.1,
+            resizeMode: uri ? 'cover' : 'contain'
+          }
+        }
         onLoadEnd={() => setLoading(false)}
       />
     </ShimmerPlaceholder>

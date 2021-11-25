@@ -24,7 +24,7 @@ export const EpisodeCard: React.FC<Props> = ({ episode, onPress }) => {
     >
       <View style={styles.imageContainer}>
         <ImageLoader
-          uri={episode.image.original}
+          uri={episode?.image?.original}
           width={height * 0.1}
           aspectRatio={1}
         />

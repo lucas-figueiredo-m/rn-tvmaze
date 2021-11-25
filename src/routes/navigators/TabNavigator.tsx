@@ -6,9 +6,10 @@ import Home from 'assets/icons/home.svg'
 import Magnifyer from 'assets/icons/search.svg'
 import { SVG } from 'components/common';
 import HomeStackNavigator from './HomeStackNavigator';
-import SearchStackNavigator from './SearchStackNavigator';
+import SearchScreen from 'screens/SearchScreen/SearchScreen';
+import { TabParamsList } from 'routes/config/types';
 
-const Tabs = createBottomTabNavigator()
+const Tabs = createBottomTabNavigator<TabParamsList>()
 
 const TabNavigator: React.FC = () => (
   <Tabs.Navigator
@@ -26,8 +27,8 @@ const TabNavigator: React.FC = () => (
       }}
     />
     <Tabs.Screen
-      name={TabRoutes.SEARCH_STACK}
-      component={SearchStackNavigator}
+      name={TabRoutes.SEARCH_SCREEN}
+      component={SearchScreen}
       options={{
         tabBarLabel: 'Search',
         tabBarIcon: ({ color }) => <SVG xml={Magnifyer} color={color} />
