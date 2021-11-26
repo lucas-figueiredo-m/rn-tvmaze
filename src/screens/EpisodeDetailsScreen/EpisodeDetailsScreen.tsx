@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import { useRoute } from '@react-navigation/native'
 import { ShowHeader } from 'components'
 import { SVG } from 'components/common'

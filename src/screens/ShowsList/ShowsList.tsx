@@ -28,7 +28,8 @@ const ShowsList: React.FC = () => {
       setError('')
 
     } catch (err) {
-      console.log('fail: ', { err })
+      // console.log('fail: ', { err })
+      setError('An error has aoccured')
     }
   } 
   

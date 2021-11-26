@@ -5,7 +5,7 @@ const { width, height } = Dimensions.get('window')
 
 export const styles = StyleSheet.create({
   root: {
-    height: Platform.OS === 'android' ? height * 0.15 + Number(StatusBar.currentHeight) : height * 0.15,
+    height: height * 0.15,
     width,
     backgroundColor: Colors.DarkGrey,
     shadowColor: Colors.Black,

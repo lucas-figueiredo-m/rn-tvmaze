@@ -1,11 +1,11 @@
-import { Platform, StatusBar, StyleSheet, Dimensions } from 'react-native'
+import { StyleSheet, Dimensions } from 'react-native'
 import { Colors, FontFamilies } from 'theme'
 
 const { width, height } = Dimensions.get('window')
 
 export const styles = StyleSheet.create({
   root: {
-    height: Platform.OS === 'android' ? height * 0.12 + Number(StatusBar.currentHeight) : height * 0.12,
+    height: height * 0.12,
     width,
     backgroundColor: Colors.DarkGrey,
     shadowColor: Colors.Black,
