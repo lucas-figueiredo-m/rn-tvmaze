@@ -25,10 +25,9 @@ const SearchScreen: React.FC = () => {
   const [search, setSearch] = useState<string>('')
   const [loading, setLoading] = useState<boolean>(false)
   const [shows, setShows] = useState<ShowSearch[]>([])
-  const [page, setPage] = useState<number>(0)
   const [error, setError] = useState<string>('')
 
-  const { navigate, jumpTo } = useNavigation<SearchScreenProps>()
+  const { jumpTo } = useNavigation<SearchScreenProps>()
 
   const getShows = useCallback( async (q: string) => {
     try {
@@ -38,10 +37,10 @@ const SearchScreen: React.FC = () => {
       setShows(showList)
       setLoading(false)
     } catch (err) {
+      setError('An error has occurred')
       setLoading(false)
-      console.log('Error: ', { err })
     }
-  }, [search, page])
+  }, [search])
 
   useEffect(() => {
     const sub = action$.subscribe(text => {

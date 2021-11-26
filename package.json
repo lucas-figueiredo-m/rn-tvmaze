@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "android": "npx react-native run-android",
+    "staging": "cd android && ./gradlew assembleStaging && open ./app/build/outputs/apk/staging",
     "ios": "npx react-native run-ios --scheme \"developScheme\" ",
     "start": "npx react-native start",
     "test": "jest",
